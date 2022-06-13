@@ -1,7 +1,10 @@
 from audioop import reverse
 from pyexpat import model
 from re import template
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from braces.views import GroupRequiredMixin
 
 # =====================================================
 from django.urls import reverse_lazy
@@ -59,3 +62,11 @@ class PessoaDelete(DeleteView):
 class CidadeList(ListView):
     model = Cidade
     template_name = 'paginas/listas/cidades.html'
+
+
+
+class CidadeList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    group_required = u"Administrador"
+    model = Cidade
+    template_name = 'cadastros/listar_estados.html'
