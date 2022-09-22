@@ -76,7 +76,7 @@ class VeiculoUpdate(UpdateView):
     success_url = reverse_lazy('index')
 
 class ClientesUpdate(UpdateView):
-    model = Cidade
+    model = Clientes
     fields = ['nome_completo','telefone','nascimento','email','rg','cpf']
     template_name = 'paginas/form.html'
     success_url = reverse_lazy('index')
