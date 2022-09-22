@@ -6,17 +6,27 @@
 
 {% block conteudo %}
 
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg">
+            <h3>{{ titulo }}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
 <form method="post">
+                <!-- To-do formulário tem que ter essa validação -->
+                {% csrf_token %}
+                <!-- Gera o formulário -->
+                {{ form|crispy }}
+                <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+            </form>
+        </div>
+    </div>
 
-    {% csrf_token%}
-
-    {{ form|crispy }}
-
-    <button type = "submit" class = "btn btn-primary">
-        Entrar
-    </button>
-</form>
-
+</div>
 {% endblock %}
 
 

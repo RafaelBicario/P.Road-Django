@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'paginas.apps.PaginasConfig',
 
     'crispy_forms',
+    'users.apps.UsersConfig'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -132,6 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #view de dados de login
 
-LOGIN_URL ='login'
+LOGIN_URL ='users'
 LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'users'

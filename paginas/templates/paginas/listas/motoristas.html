@@ -1,0 +1,40 @@
+% extends 'paginas/modelo.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+
+    <table>
+        <thead>
+
+            <tr>
+                <th>Nome</th>
+                <th>Estado</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for objeto in object_list %}
+                <tr>
+                    <td>{{ obj.nome }}</td>
+                    <td>{{ obj.estado }}</td>
+                    <td>
+                        <a href="{% url 'editar-motoristas' obj.pk %}" class="btn btn-warning">
+                            Editar
+                        </a>
+                        <a href="{% url 'deletar-motoristas' obj.pk %}" class="btn btn-danger">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="100%">Nenhum registro foi encontrado.</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
