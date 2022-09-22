@@ -132,6 +132,7 @@ class CidadeList(ListView):
 
 class ClienteList(ListView):
     model = Clientes
+    context_object_name = 'cliente'
     template_name = 'paginas/listas/clientes.html'
 
 class VeiculoList(ListView):

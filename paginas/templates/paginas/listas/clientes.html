@@ -1,40 +1,39 @@
-% extends 'paginas/modelo.html' %}
+{% extends 'paginas/modelo.html' %}
 
 {% load static %}
-
+    @register.filter(name='has_group')
+    def has_group(user, group_name):
+    group = Group.objects.get(name=group_name)
+    return True if group in user.groups.all() else False
 {% block conteudo %}
 
-    <table>
-        <thead>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome Completo</th>
+            <th>Telefone</th>
+            <th>Nascimento</th>
+            <th>E-Mail</th>
+            <th>Rg</th>
+            <th>Cpf</th>
+        </tr>
+        {% for cliente in object_list %}
+        <tr>
+            <td>{{ cliente.nome_completo }}</td>
+            <td>{{ cliente.telefone }}</td>
+            <td>{{ cliente.nascimento }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.rg }}</td>
+            <td>{{ cliente.cpf }}</td>
+        <td>
+            <a href="{% url 'editar-clientes' cliente.pk %}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{% url 'deletar-clientes' cliente.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+        </td>
+    </tr>
+        {% empty %}
+    <tr>
+        <td colspan="3">Nenhum cliente cadastrado!</td>
+    </tr>
+    {% endfor %}
+</table>
 
-            <tr>
-                <th>Nome</th>
-                <th>Estado</th>
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            {% for objeto in object_list %}
-                <tr>
-                    <td>{{ obj.nome }}</td>
-                    <td>{{ obj.estado }}</td>
-                    <td>
-                        <a href="{% url 'editar-clientes' obj.pk %}" class="btn btn-warning">
-                            Editar
-                        </a>
-                        <a href="{% url 'deletar-clientes' obj.pk %}" class="btn btn-danger">
-                            Excluir
-                        </a>
-                    </td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="100%">Nenhum registro foi encontrado.</td>
-                </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
 {% endblock %}
