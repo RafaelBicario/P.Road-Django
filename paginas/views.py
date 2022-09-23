@@ -46,7 +46,7 @@ class ClientesCreate(CreateView):
 
 class ViagensCreate(CreateView):
     model = Viagens
-    fields = ['local_saida','local_destino','parada']
+    fields = ['local_saida','local_destino','parada','usuario']
     template_name = 'paginas/form.html'
     success_url = reverse_lazy('index')
 
@@ -54,6 +54,7 @@ class MotoristaCreate(CreateView):
     model = Motoristas
     fields = ['nome_completo','telefone','nascimento','email','rg','cpf']
     template_name = 'paginas/form.html'
+    group_required = u"Motoristas"
     success_url = reverse_lazy('index')
 
 #UpdateView=============================================================================================================
@@ -91,36 +92,43 @@ class MotoristaUpdate(UpdateView):
     model = Motoristas
     fields = ['nome_completo','telefone','nascimento','email','rg','cpf']
     template_name = 'paginas/form.html'
+    group_required = u"Motoristas"
     success_url = reverse_lazy('index')
 
 #DeleteView=============================================================================================================
 class CidadeDelete(DeleteView):
     model = Cidade
+    group_required = [u"admin", u"Motoristas"]
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('listar-cidade')
 
 class PessoaDelete(DeleteView):
     model = Pessoa
+    group_required = [u"admin", u"Motoristas"]
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('index')
 
 class VeiculoDelete(DeleteView):
     model = Veiculo
+    group_required = [u"admin", u"Motoristas"]
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('index')
 
 class ClientesDelete(DeleteView):
     model = Clientes
+    group_required = [u"admin", u"Motoristas"]
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('index')
 
 class ViagensDelete(DeleteView):
     model = Viagens
+    group_required = [u"admin", u"Motoristas"]
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('index')
 
 class MotoristaDelete(DeleteView):
     model = Motoristas
+    group_required = u"Motoristas"
     template_name = 'paginas/form-delete.html'
     success_url = reverse_lazy('index')
 
