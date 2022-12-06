@@ -6,6 +6,15 @@
 
 {% block conteudo %}
 
+    <script>
+        $("#btn-teste").click(function (){
+            $(".div-teste2").hide(show);
+        })
+
+        $
+
+    </script>
+
 <form method="post">
 
     {% csrf_token%}
@@ -18,3 +27,37 @@
 </form>
 
 {% endblock %}
+
+
+ {% block scripts %}
+
+     <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+     <script>
+         $(document).ready(function(){
+            $("#id_telefone").mask("(00) 00000-0000");
+            $("#id_nascimento").mask("00/00/00");
+            $("#id_cpf").mask("000.000.000-00");
+            $("#id_rg").mask("00.000.000-0");
+
+            {#Pega todos os campos na qual o id contenha DATA#}
+            $("#id_input[id=data_]").mask("00/00/00");
+
+            {#Altera a mascara entre números telefonicos de 10 e 11 digitos#}
+            var SPMaskBehavior = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            spOptions = {
+                onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+             $('.sp_celphones').mask(SPMaskBehavior, spOptions);
+            });
+
+
+     </script>
+
+
+ {% endblock %}

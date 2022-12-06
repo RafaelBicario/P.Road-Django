@@ -390,6 +390,11 @@
     <script src="{% static 'js/demo/chart-area-demo.js'%}"></script>
     <script src="{% static 'js/demo/chart-pie-demo.js'%}"></script>
 
+            {% block scripts %}
+                <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+                <script src="{% static 'js/datatables.js/datatables.min.js' %}"</script>
+            {% endblock %}
+
 </body>
 
 </html>
